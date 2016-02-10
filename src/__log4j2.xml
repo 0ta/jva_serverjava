@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+	<appenders>
+		<RollingFile name="RollingFile" fileName="logs/jsonResult.log" filePattern="logs/%djsonResult.log">
+			<PatternLayout pattern="[%d{HH:mm:ss.SSS}]%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+	</appenders>
+	<loggers>
+		<logger name="com.jva.jsonhistory" level="trace">
+			<appender-ref ref="RollingFile" />
+		</logger>
+		<!--
+		<root level="error">
+			<appender-ref ref="RollingFile" />
+		</root>
+		-->
+
+	</loggers>
+</configuration>

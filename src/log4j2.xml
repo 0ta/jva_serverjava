@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+	<appenders>
+		<RollingFile name="RollingFile" fileName="logs/jsonResult.log" filePattern="logs/%djsonResult.log">
+			<PatternLayout pattern="[%d{HH:mm:ss.SSS}]%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="RollingFile4HitRatioEval" fileName="logs/jsonResult4HitRatioEval.log" filePattern="logs/%djsonResult4HitRatioEval.log">
+			<PatternLayout pattern="[%d{HH:mm:ss.SSS}]%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+	</appenders>
+	<loggers>
+		<logger name="com.jva.jsonhistory" level="trace">
+			<appender-ref ref="RollingFile" />
+		</logger>
+		<logger name="com.jva.jsonhistory4HitRatioEval" level="trace">
+			<appender-ref ref="RollingFile4HitRatioEval" />
+		</logger>
+		<!--
+		<root level="error">
+			<appender-ref ref="RollingFile" />
+		</root>
+		-->
+
+	</loggers>
+</configuration>
