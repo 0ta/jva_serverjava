@@ -19,6 +19,48 @@ public class ResultPOJO {
 	private String rrate_p4;
 	private String rrate_p5;
 	private String rrate_p6;
+	private String answerHitratio_total;
+	private String answerHitratio_1;
+	private String answerHitratio_2;
+	private String answerHitratio_3;
+	private String answerHitratio_4;
+	private String answerHitratio_5;
+	public String getAnswerHitratio_total() {
+		return answerHitratio_total;
+	}
+	public void setAnswerHitratio_total(String answerHitratio_total) {
+		this.answerHitratio_total = answerHitratio_total;
+	}
+	public String getAnswerHitratio_1() {
+		return answerHitratio_1;
+	}
+	public void setAnswerHitratio_1(String answerHitratio_1) {
+		this.answerHitratio_1 = answerHitratio_1;
+	}
+	public String getAnswerHitratio_2() {
+		return answerHitratio_2;
+	}
+	public void setAnswerHitratio_2(String answerHitratio_2) {
+		this.answerHitratio_2 = answerHitratio_2;
+	}
+	public String getAnswerHitratio_3() {
+		return answerHitratio_3;
+	}
+	public void setAnswerHitratio_3(String answerHitratio_3) {
+		this.answerHitratio_3 = answerHitratio_3;
+	}
+	public String getAnswerHitratio_4() {
+		return answerHitratio_4;
+	}
+	public void setAnswerHitratio_4(String answerHitratio_4) {
+		this.answerHitratio_4 = answerHitratio_4;
+	}
+	public String getAnswerHitratio_5() {
+		return answerHitratio_5;
+	}
+	public void setAnswerHitratio_5(String answerHitratio_5) {
+		this.answerHitratio_5 = answerHitratio_5;
+	}
 	public String getRrate_p2() {
 		return rrate_p2;
 	}
@@ -121,5 +163,10 @@ public class ResultPOJO {
 	}
 	public void setSet(String set) {
 		this.set = set;
+	}
+	public void sumSetterPositionsPassesActualAtackNum() {
+		for (int i = 0; i < setterPositions.size(); i++) {
+			setterPositions.get(i).sumPassesActualAtackNum();
+		}
 	}
 }
