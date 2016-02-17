@@ -117,27 +117,32 @@ public abstract class JVAServlet extends HttpServlet {
 			
 			int totalNum = 0;
 			int totalCorrectNum = 0;
-			int numPerSet = 0;
-			int correctNumPerSet = 0;
-			String currentSet = "0";
+			
+			int numPerRotation1 = 0;
+			int correctNumPerRotation1 = 0;
+			int numPerRotation2 = 0;
+			int correctNumPerRotation2 = 0;
+			int numPerRotation3 = 0;
+			int correctNumPerRotation3 = 0;
+			int numPerRotation4 = 0;
+			int correctNumPerRotation4 = 0;
+			int numPerRotation5 = 0;
+			int correctNumPerRotation5 = 0;
+			int numPerRotation6 = 0;
+			int correctNumPerRotation6 = 0;
+			
 			while (rs.next()) {
-				System.out.println("Come here!!!");
 				// Set actual done atack number 
 				int rotationInt = Math.round(rs.getFloat("Rotation_A"));
 				int receptionInt = Math.round(rs.getFloat("P_num_R"));
 				int answerInt = Math.round(rs.getFloat("P_num_Answer"));
-				System.out.println(rotationInt);
-				System.out.println(receptionInt);
-				System.out.println(answerInt);
 				if (receptionInt > 1) {
 					PassPOJO pp = result.getSetterPositions().get(rotationInt - 1).getPasses().get(receptionInt - 2);
-					System.out.println("come here2");
 					int sumInt = 0;
 					switch(answerInt) {
 					case 2:
 						sumInt = Integer.valueOf(pp.getActualAtacknum_p2());
 						pp.setActualAtacknum_p2(String.valueOf(++sumInt));
-						System.out.println(pp.getActualAtacknum_p2());
 						break;
 					case 3:
 						sumInt = Integer.valueOf(pp.getActualAtacknum_p3());
@@ -158,18 +163,131 @@ public abstract class JVAServlet extends HttpServlet {
 					}
 				}
 				result.sumSetterPositionsPassesActualAtackNum();
-//				totalNum++;
-//				numPerSet++;
-//				
-//				result.setUninum_p2(rs.getString("aP2"));
-//				result.setUninum_p3(rs.getString("aP3"));
-//				result.setUninum_p4(rs.getString("aP4"));			
-//				result.setUninum_p5(rs.getString("aP5"));
-//				result.setUninum_p6(rs.getString("aP6"));		
-//				result.setCurrentRotation(rs.getString("Rotation_A"));
-
+				
+				// Set hit ratio 
+				boolean isHit = false;
+				String ansKbnStr = rs.getString("Answer_KBN");
+				if ("1".equals(ansKbnStr)) {
+					isHit = true;
+					totalCorrectNum++;
+				}
+				totalNum++;
+				// Set hit ratio per Rotaion
+				switch(rotationInt) {
+				case 1:
+					numPerRotation1++;
+					if (isHit) {
+						correctNumPerRotation1++;
+					}
+					break;
+				case 2:
+					numPerRotation2++;
+					if (isHit) {
+						correctNumPerRotation2++;
+					}
+					break;
+				case 3:
+					numPerRotation3++;
+					if (isHit) {
+						correctNumPerRotation3++;
+					}
+					break;
+				case 4:
+					numPerRotation4++;
+					if (isHit) {
+						correctNumPerRotation4++;
+					}
+					break;
+				case 5:
+					numPerRotation5++;
+					if (isHit) {
+						correctNumPerRotation5++;
+					}
+					break;
+				case 6:
+					numPerRotation6++;
+					if (isHit) {
+						correctNumPerRotation6++;
+					}
+					break;
+				}
+				// Set hit ratio per Set
+				int set = Math.round(rs.getFloat("Set"));
+				int i = 0;
+				int j = 0;
+				switch(set) {
+				case 1:
+					if (isHit) {
+						i = result.getAnswerHitratio_correctNum_1();
+						result.setAnswerHitratio_correctNum_1(++i);
+					}
+					j = result.getAnswerHitratio_num_1();
+					result.setAnswerHitratio_num_1(++j);
+					break;
+				case 2:
+					if (isHit) {
+						i = result.getAnswerHitratio_correctNum_2();
+						result.setAnswerHitratio_correctNum_2(++i);
+					}
+					j = result.getAnswerHitratio_num_2();
+					result.setAnswerHitratio_num_2(++j);
+					break;
+				case 3:
+					if (isHit) {
+						i = result.getAnswerHitratio_correctNum_3();
+						result.setAnswerHitratio_correctNum_3(++i);
+					}
+					j = result.getAnswerHitratio_num_3();
+					result.setAnswerHitratio_num_3(++j);
+					break;
+				case 4:
+					if (isHit) {
+						i = result.getAnswerHitratio_correctNum_4();
+						result.setAnswerHitratio_correctNum_4(++i);
+					}
+					j = result.getAnswerHitratio_num_4();
+					result.setAnswerHitratio_num_4(++j);
+					break;
+				case 5:
+					if (isHit) {
+						i = result.getAnswerHitratio_correctNum_5();
+						result.setAnswerHitratio_correctNum_5(++i);
+					}
+					j = result.getAnswerHitratio_num_5();
+					result.setAnswerHitratio_num_5(++j);
+					break;
+				}
+			}
+			if (numPerRotation1 != 0) {
+				result.getSetterPositions().get(0).setAnswerHitratio_correctNum(correctNumPerRotation1);
+				result.getSetterPositions().get(0).setAnswerHitratio_num(numPerRotation1);
+			}
+			if (numPerRotation2 != 0) {
+				result.getSetterPositions().get(1).setAnswerHitratio_correctNum(correctNumPerRotation2);
+				result.getSetterPositions().get(1).setAnswerHitratio_num(numPerRotation2);
+			}
+			if (numPerRotation3 != 0) {
+				result.getSetterPositions().get(2).setAnswerHitratio_correctNum(correctNumPerRotation3);
+				result.getSetterPositions().get(2).setAnswerHitratio_num(numPerRotation3);
+			}
+			if (numPerRotation4 != 0) {
+				result.getSetterPositions().get(3).setAnswerHitratio_correctNum(correctNumPerRotation4);
+				result.getSetterPositions().get(3).setAnswerHitratio_num(numPerRotation4);
+			}
+			if (numPerRotation5 != 0) {
+				result.getSetterPositions().get(4).setAnswerHitratio_correctNum(correctNumPerRotation5);
+				result.getSetterPositions().get(4).setAnswerHitratio_num(numPerRotation5);
+			}
+			if (numPerRotation6 != 0) {
+				result.getSetterPositions().get(5).setAnswerHitratio_correctNum(correctNumPerRotation6);
+				result.getSetterPositions().get(5).setAnswerHitratio_num(numPerRotation6);
 			}
 			
+			if (totalNum != 0) {
+				result.setAnswerHitratio_correctNum_total(totalCorrectNum);
+				result.setAnswerHitratio_num_total(totalNum);
+			}
+
 			// for test
 			result.setRrate_p2("61.3");
 			result.setRrate_p3("16.3");

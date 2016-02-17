@@ -5,12 +5,19 @@ import java.util.List;
 public class SetterPositionPOJO {
 	private List<PassPOJO> passes;
 	private String position;
-	private String answerHitratio;
-	public String getAnswerHitratio() {
-		return answerHitratio;
+	private int answerHitratio_num = 0;
+	private int answerHitratio_correctNum = 0;
+	public int getAnswerHitratio_num() {
+		return answerHitratio_num;
 	}
-	public void setAnswerHitratio(String answerHitratio) {
-		this.answerHitratio = answerHitratio;
+	public void setAnswerHitratio_num(int answerHitratio_num) {
+		this.answerHitratio_num = answerHitratio_num;
+	}
+	public int getAnswerHitratio_correctNum() {
+		return answerHitratio_correctNum;
+	}
+	public void setAnswerHitratio_correctNum(int answerHitratio_correctNum) {
+		this.answerHitratio_correctNum = answerHitratio_correctNum;
 	}
 	public List<PassPOJO> getPasses() {
 		return passes;
