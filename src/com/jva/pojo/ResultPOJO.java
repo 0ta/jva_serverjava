@@ -1,5 +1,6 @@
 package com.jva.pojo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ResultPOJO {
@@ -21,16 +22,76 @@ public class ResultPOJO {
 	private String rrate_p6;
 	private int answerHitratio_num_total = 0;
 	private int answerHitratio_correctNum_total = 0;
+	private String answerHitratio_correctPercentage_total = "-";
 	private int answerHitratio_num_1 = 0;
 	private int answerHitratio_correctNum_1 = 0;
+	private String answerHitratio_correctPercentage_1 = "-";
 	private int answerHitratio_num_2 = 0;
 	private int answerHitratio_correctNum_2 = 0;
+	private String answerHitratio_correctPercentage_2 = "-";
 	private int answerHitratio_num_3 = 0;
 	private int answerHitratio_correctNum_3 = 0;
+	private String answerHitratio_correctPercentage_3 = "-";
 	private int answerHitratio_num_4 = 0;
 	private int answerHitratio_correctNum_4 = 0;
+	private String answerHitratio_correctPercentage_4 = "-";
 	private int answerHitratio_num_5 = 0;
 	private int answerHitratio_correctNum_5 = 0;
+	private String answerHitratio_correctPercentage_5 = "-";
+	public String getAnswerHitratio_correctPercentage_total() {
+		return answerHitratio_correctPercentage_total;
+	}
+
+	public void setAnswerHitratio_correctPercentage_total(
+			String answerHitratio_correctPercentage_total) {
+		this.answerHitratio_correctPercentage_total = answerHitratio_correctPercentage_total;
+	}
+
+	public String getAnswerHitratio_correctPercentage_1() {
+		return answerHitratio_correctPercentage_1;
+	}
+
+	public void setAnswerHitratio_correctPercentage_1(
+			String answerHitratio_correctPercentage_1) {
+		this.answerHitratio_correctPercentage_1 = answerHitratio_correctPercentage_1;
+	}
+
+	public String getAnswerHitratio_correctPercentage_2() {
+		return answerHitratio_correctPercentage_2;
+	}
+
+	public void setAnswerHitratio_correctPercentage_2(
+			String answerHitratio_correctPercentage_2) {
+		this.answerHitratio_correctPercentage_2 = answerHitratio_correctPercentage_2;
+	}
+
+	public String getAnswerHitratio_correctPercentage_3() {
+		return answerHitratio_correctPercentage_3;
+	}
+
+	public void setAnswerHitratio_correctPercentage_3(
+			String answerHitratio_correctPercentage_3) {
+		this.answerHitratio_correctPercentage_3 = answerHitratio_correctPercentage_3;
+	}
+
+	public String getAnswerHitratio_correctPercentage_4() {
+		return answerHitratio_correctPercentage_4;
+	}
+
+	public void setAnswerHitratio_correctPercentage_4(
+			String answerHitratio_correctPercentage_4) {
+		this.answerHitratio_correctPercentage_4 = answerHitratio_correctPercentage_4;
+	}
+
+	public String getAnswerHitratio_correctPercentage_5() {
+		return answerHitratio_correctPercentage_5;
+	}
+
+	public void setAnswerHitratio_correctPercentage_5(
+			String answerHitratio_correctPercentage_5) {
+		this.answerHitratio_correctPercentage_5 = answerHitratio_correctPercentage_5;
+	}
+
 	private List<SetterPositionPOJO> setterPositions;
 	
 	public String getGameId() {
@@ -270,5 +331,23 @@ public class ResultPOJO {
 		for (int i = 0; i < setterPositions.size(); i++) {
 			setterPositions.get(i).sumPassesActualAtackNum();
 		}
+	}
+	
+	public void culculateAllPercentage() {
+		answerHitratio_correctPercentage_total =  getPercentage(answerHitratio_correctNum_total, answerHitratio_num_total);
+		answerHitratio_correctPercentage_1 =  getPercentage(answerHitratio_correctNum_1, answerHitratio_num_1);
+		answerHitratio_correctPercentage_2 =  getPercentage(answerHitratio_correctNum_2, answerHitratio_num_2);
+		answerHitratio_correctPercentage_3 =  getPercentage(answerHitratio_correctNum_3, answerHitratio_num_3);
+		answerHitratio_correctPercentage_4 =  getPercentage(answerHitratio_correctNum_4, answerHitratio_num_4);
+		answerHitratio_correctPercentage_5 =  getPercentage(answerHitratio_correctNum_5, answerHitratio_num_5);
+	}
+	
+	private String getPercentage(double correctnum, double totalnum) {
+		BigDecimal bd;
+		if (totalnum != 0) {
+			bd = new BigDecimal(correctnum / totalnum * 100);
+			return String.valueOf(bd.setScale(0,  BigDecimal.ROUND_HALF_UP));
+		}
+		return "-";
 	}
 }

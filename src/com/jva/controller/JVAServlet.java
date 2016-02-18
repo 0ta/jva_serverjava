@@ -294,6 +294,9 @@ public abstract class JVAServlet extends HttpServlet {
 			result.setRrate_p4("14.6");
 			result.setRrate_p5("32.3");
 			result.setRrate_p6("24.3");
+
+			// Calculate hit ratio percentage
+			result.culculateAllPercentage();
 			
 			// Root
 			root.setResult(result);
